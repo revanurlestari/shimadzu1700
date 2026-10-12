@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animasi Preparasi Sampel Kulit untuk Analisis Cr(VI)</title>
+<style>
+:root{--navy:#17324d;--blue:#2476c8;--pale:#edf6ff;--line:#d5e3f1;--muted:#59718a}
+*{box-sizing:border-box}body{margin:0;font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;color:#20364c;background:linear-gradient(135deg,#e8f4ff,#f8fbff 55%,#fff3df)}
+header{background:#17324d;color:white;padding:24px max(20px,calc((100% - 1100px)/2));}
+header .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#a9d4ff;font-weight:800}
+h1{font-size:clamp(25px,4vw,38px);line-height:1.2;margin:8px 0}header p{max-width:850px;color:#d7e8f8;margin:8px 0 0}
+main{max-width:1100px;margin:24px auto;padding:0 16px 50px;display:grid;gap:18px}
+.card{background:#ffffffed;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 8px 28px #17324d0d}
+h2{font-size:22px;margin:0 0 8px;color:var(--navy)}h3{font-size:17px;margin:0 0 10px;color:var(--navy)}.muted{color:var(--muted);margin-top:0}
+.player{background:#122b43;border-radius:14px;padding:14px;color:white}
+.screen{height:300px;position:relative;overflow:hidden;border-radius:10px;background:linear-gradient(#c7e8ff 0%,#eff9ff 58%,#a7c7b4 58%,#6f9581 100%);color:#19364e}
+.scene-title{position:absolute;z-index:5;top:12px;left:14px;right:14px;font-size:18px;font-weight:850;text-shadow:0 1px #fff}
+.scene-sub{position:absolute;z-index:5;top:42px;left:14px;font-size:12px;background:#ffffffbb;padding:3px 8px;border-radius:20px}
+.sun{position:absolute;right:9%;top:22%;width:42px;height:42px;border-radius:50%;background:#ffe5a1;box-shadow:0 0 30px #ffe5a1}
+.bench{position:absolute;bottom:34px;left:5%;right:5%;height:16px;border-radius:5px;background:#778b9a;box-shadow:0 8px 0 #4c6575}
+.vessel{position:absolute;bottom:50px;left:calc(50% - 34px);width:68px;height:83px;border:3px solid #47728b;border-top:0;border-radius:4px 4px 16px 16px;background:#ffffff7a}
+.liquid{position:absolute;bottom:3px;left:3px;right:3px;height:32%;border-radius:0 0 11px 11px;background:#9b8661;transition:all .5s}
+.neck{position:absolute;bottom:130px;left:calc(50% - 11px);width:22px;height:24px;border:3px solid #47728b;border-bottom:0;background:#d9f2ff88}
+.furnace{display:none;position:absolute;bottom:48px;left:calc(50% - 72px);width:144px;height:115px;border:9px solid #71818d;border-radius:10px;background:#2d465a;box-shadow:inset 0 0 0 5px #9eabb3}
+.furnace:after{content:"750°C";position:absolute;inset:34px 0 auto;text-align:center;color:#ffbd77;font-size:25px;font-weight:900}
+.heat{display:none;position:absolute;bottom:30px;left:calc(50% - 22px);font-size:40px;animation:flame .6s infinite alternate;filter:drop-shadow(0 0 8px #ff8b38)}
+.drop{display:none;position:absolute;top:95px;left:calc(50% + 35px);font-size:30px;animation:drop 1s infinite}
+.filter{display:none;position:absolute;bottom:105px;left:calc(50% - 65px);width:130px;height:5px;background:#fff;border:1px solid #658095;transform:rotate(-25deg)}
+.flask{display:none;position:absolute;bottom:50px;left:calc(50% - 32px);width:64px;height:95px;border:3px solid #47728b;border-radius:5px 5px 24px 24px;background:#ffffff70}
+.flask:after{content:"";position:absolute;bottom:3px;left:3px;right:3px;height:65%;background:#d6e9a0;border-radius:0 0 18px 18px}
+.label{position:absolute;bottom:10px;left:12px;background:#ffffffd9;border-radius:7px;padding:4px 9px;font-size:12px;font-weight:700}
+.caption{min-height:76px;padding:12px 3px 4px;color:#eef7ff}
+.progress{height:6px;background:#45637b;border-radius:10px;overflow:hidden}.progress-in{height:100%;width:12.5%;background:#ffcb70;transition:width .3s}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+button{font:inherit;cursor:pointer;border:1px solid #a8c6df;background:#f4faff;color:#173a55;padding:8px 12px;border-radius:8px;font-weight:750}
+.controls button.primary{background:#ffcb70;border-color:#ffcb70}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.chips button{font-size:12px;padding:6px 8px}.chips button.active{background:#2476c8;color:white;border-color:#2476c8}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.step{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbfdff}
+.num{display:inline-grid;place-items:center;width:30px;height:30px;background:#dceeff;color:#145da4;border-radius:50%;font-weight:900;margin-bottom:8px}
+.callout{background:#fff7e7;border:1px solid #f1d7a5;border-radius:10px;padding:12px 14px}
+.tabs{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 14px}.tabs button.active{background:#2476c8;color:#fff;border-color:#2476c8}
+.tab-content{background:#f7fbff;border:1px solid var(--line);border-radius:10px;padding:15px}
+ol,ul{padding-left:22px}li{margin:5px 0}
+@keyframes flame{from{transform:scale(.9);opacity:.7}to{transform:scale(1.12);opacity:1}}@keyframes drop{0%{transform:translateY(-20px);opacity:0}50%{opacity:1}100%{transform:translateY(48px);opacity:0}}
+@media(max-width:600px){.screen{height:250px}.card{padding:15px}.caption{min-height:100px}}
+</style>
+</head>
+<body>
+<header>
+<div class="eyebrow">Modul visual praktikum · Kimia analitik</div>
+<h1>Preparasi Sampel Kulit untuk Analisis Cr(VI)</h1>
+<p>Animasi interaktif tahapan preparasi, catatan prosedur, pembuatan larutan pendukung, dan pengukuran menggunakan metode difenilkarbazida (DPC). Klik <b>Putar animasi</b> atau pilih tahap tertentu.</p>
+</header>
+<main>
+<section class="card">
+<h2>🎬 Animasi prosedur</h2>
+<p class="muted">Ini animasi ilustrasi berbasis HTML/CSS, bukan rekaman eksperimen nyata. Gunakan modul/SOP laboratorium sebagai acuan pelaksanaan sebenarnya.</p>
+<div class="player">
+<div class="screen" id="screen">
+<div class="sun"></div><div class="scene-title" id="sceneTitle">Tahap 1 · Penimbangan sampel</div>
+<div class="scene-sub" id="sceneSub">Persiapan sampel</div>
+<div class="bench"></div>
+<div class="vessel" id="vessel"><div class="liquid" id="liquid"></div></div><div class="neck" id="neck"></div>
+<div class="furnace" id="furnace"></div><div class="heat" id="heat">♨</div><div class="drop" id="drop">💧</div><div class="filter" id="filter"></div><div class="flask" id="flask"></div>
+<div class="label" id="sceneLabel">Sampel kulit · 0,4 g</div>
+</div>
+<div class="caption" id="caption" aria-live="polite"></div>
+<div class="progress"><div class="progress-in" id="progress"></div></div>
+<div class="controls"><button class="primary" id="play">▶ Putar animasi</button><button id="pause">Ⅱ Jeda</button><button id="prev">◀ Sebelumnya</button><button id="next">Berikutnya ▶</button><button id="restart">↺ Ulangi</button></div>
+<div class="chips" id="chips"></div>
+</div>
+</section>
+<section class="card">
+<h2>🧪 Catatan langkah kerja</h2>
+<div id="details"></div>
+</section>
+<section class="card">
+<h2>📚 Larutan pendukung dan pengukuran</h2>
+<div class="tabs" id="tabs">
+<button class="active" data-tab="dpc">Larutan DPC</button><button data-tab="stock">Larutan standar</button><button data-tab="work">Deret kerja</button><button data-tab="measure">Analisis presisi</button>
+</div>
+<div class="tab-content" id="tabContent"></div>
+</section>
+<section class="card">
+<h2>Semua tahapan secara ringkas</h2>
+<div class="steps" id="allSteps"></div>
+</section>
+<section class="card">
+<h2>⚠️ Catatan penting</h2>
+<div class="callout"><b>Periksa kembali catatan campuran fluks.</b> Data yang diberikan menyebut rasio Na₂CO₃ : Na₂B₄O₇ = 2 : 1, tetapi massa 5 g : 10 g menghasilkan rasio 1 : 2, bukan 2 : 1. Konfirmasikan angka yang benar dengan modul praktikum atau asisten sebelum digunakan.</div>
+<p>Cr(VI) berbahaya. Tahapan yang melibatkan sampel, asam, tanur, atau bahan kimia harus dilakukan dengan APD dan pengawasan sesuai SOP laboratorium.</p>
+</section>
+</main>
+<script>
+const steps=[
+{title:"Tahap 1 · Timbang sampel kulit",sub:"Penimbangan",label:"Sampel kulit · 0,4 g",caption:"Timbang 0,4 g sampel kulit yang telah dipotong kecil dan masukkan ke wadah yang sesuai. Untuk uji akurasi, tambahkan 1 mL larutan K₂Cr₂O₇ 1000 ppm sebelum pemanasan.",detail:"Massa sampel: 0,4 g. Khusus uji akurasi: spike 1 mL larutan K₂Cr₂O₇ 1000 ppm. Sampel untuk uji presisi tidak diberi spike sesuai catatan yang diberikan.",visual:"sample"},
+{title:"Tahap 2 · Pengabuan dalam tanur",sub:"Pemanasan",label:"Tanur · 750°C · 4 jam",caption:"Masukkan sampel ke tanur dan lakukan pemanasan pada 750°C selama 4 jam sesuai prosedur yang dicatat.",detail:"Kondisi tanur: 750°C selama 4 jam. Adegan tanur dan simbol panas pada animasi hanya ilustrasi, bukan panduan untuk mengoperasikan alat.",visual:"furnace"},
+{title:"Tahap 3 · Tambahkan campuran fluks",sub:"Penambahan fluks",label:"Na₂CO₃ + Na₂B₄O₇",caption:"Setelah tahap pemanasan, tambahkan campuran fluks sesuai catatan praktikum, kemudian pijarkan kembali selama 30 menit.",detail:"Catatan awal menyebut Na₂CO₃ : Na₂B₄O₇ = 2 : 1 dan massa 5 g : 10 g. Keduanya tidak konsisten; pastikan komposisi yang benar sebelum praktikum.",visual:"flux"},
+{title:"Tahap 4 · Larutkan dengan air panas",sub:"Pelarutan",label:"Air panas · hotplate",caption:"Setelah hasil pijaran cukup dingin, tambahkan air panas secara bertahap dan panaskan di atas hotplate hingga bahan larut.",detail:"Hindari percikan saat penambahan air. Ikuti urutan pendinginan, pelarutan, dan pemanasan sesuai SOP yang digunakan di laboratorium.",visual:"hotplate"},
+{title:"Tahap 5 · Jernihkan larutan",sub:"Pemanasan lanjutan",label:"Larutan dijernihkan",caption:"Panaskan larutan di atas hotplate hingga tampak jernih sesuai prosedur preparasi.",detail:"Gunakan beaker glass dan pemanasan yang sesuai dengan prosedur praktikum. Jangan memanaskan wadah tertutup.",visual:"clear"},
+{title:"Tahap 6 · Asamkan hingga pH 1–2",sub:"Pengaturan pH",label:"H₃PO₄ · pH 1–2",caption:"Setelah larutan didinginkan sesuai prosedur, tambahkan H₃PO₄ secara bertahap hingga pH larutan berada pada rentang 1–2.",detail:"Periksa pH menggunakan alat atau indikator yang tersedia. Penambahan asam harus dilakukan secara hati-hati dan sesuai SOP.",visual:"acid"},
+{title:"Tahap 7 · Saring ke labu takar",sub:"Penyaringan",label:"Labu takar · 250 mL",caption:"Saring larutan ke dalam labu takar 250 mL untuk memisahkan partikel yang tidak larut.",detail:"Pastikan filtrat tertampung di labu takar dan kehilangan larutan diminimalkan. Gunakan alat gelas yang bersih.",visual:"filter"},
+{title:"Tahap 8 · Tera dan homogenkan",sub:"Penyelesaian preparasi",label:"Volume akhir · 250 mL",caption:"Tambahkan akuades hingga tanda tera 250 mL, homogenkan, lalu pindahkan larutan ke botol sampel yang sesuai.",detail:"Catat identitas sampel dan siapkan larutan untuk tahap analisis sesuai prosedur praktikum.",visual:"flask"}
+];
+let idx=0,timer=null;
+const $=s=>document.querySelector(s);
+function stop(){if(timer){clearInterval(timer);timer=null}$("#play").textContent="▶ Putar animasi"}
+function render(){
+ const s=steps[idx];$("#sceneTitle").textContent=s.title;$("#sceneSub").textContent=s.sub;$("#sceneLabel").textContent=s.label;$("#caption").textContent=s.caption;$("#details").innerHTML="<h3>"+s.title+"</h3><p>"+s.detail+"</p>";$("#progress").style.width=((idx+1)/steps.length*100)+"%";
+ $("#chips").innerHTML=steps.map((x,i)=>'<button class="'+(i===idx?'active':'')+'" data-i="'+i+'">'+(i+1)+". "+x.sub+"</button>").join("");
+ $("#chips").querySelectorAll("button").forEach(b=>b.onclick=()=>{stop();idx=Number(b.dataset.i);render()});
+ ["vessel","neck","furnace","heat","drop","filter","flask"].forEach(id=>$("#"+id).style.display="none");
+ $("#vessel").style.display="block";$("#neck").style.display="block";$("#liquid").style.height=idx<2?"25%":idx<4?"40%":"68%";$("#liquid").style.background=idx<2?"#9b8661":idx<4?"#c7a36b":idx<6?"#d8d8ef":"#d6e9a0";
+ if(s.visual==="furnace"){$("#vessel").style.display="none";$("#neck").style.display="none";$("#furnace").style.display="block";$("#heat").style.display="block"}
+ if(s.visual==="flux"||s.visual==="acid")$("#drop").style.display="block";
+ if(s.visual==="hotplate"||s.visual==="clear")$("#heat").style.display="block";
+ if(s.visual==="filter"){$("#vessel").style.display="none";$("#neck").style.display="none";$("#filter").style.display="block"}
+ if(s.visual==="flask"){$("#vessel").style.display="none";$("#neck").style.display="none";$("#flask").style.display="block"}
+}
+$("#play").onclick=()=>{if(timer)return;$("#play").textContent="▶ Sedang diputar";timer=setInterval(()=>{idx=(idx+1)%steps.length;render()},3500)};
+$("#pause").onclick=stop;$("#next").onclick=()=>{stop();idx=(idx+1)%steps.length;render()};$("#prev").onclick=()=>{stop();idx=(idx+steps.length-1)%steps.length;render()};$("#restart").onclick=()=>{stop();idx=0;render()};
+$("#allSteps").innerHTML=steps.map((s,i)=>'<article class="step"><div class="num">'+(i+1)+'</div><h3>'+s.title.split(" · ")[1]+'</h3><p>'+s.caption+'</p></article>').join("");
+const tabData={
+dpc:'<ol><li>Timbang difenilkarbazid sebanyak <b>0,125 g</b>.</li><li>Masukkan ke labu takar 25 mL dan larutkan dengan aseton hingga volume 25 mL.</li><li>Bungkus labu dengan aluminium foil untuk melindungi larutan dari cahaya.</li></ol><p class="muted">Ikuti ketentuan penyimpanan dan masa pakai larutan pada SOP praktikum.</p>',
+stock:'<ol><li><b>Larutan induk 500 mg/L:</b> catatan yang diberikan menyebut 0,1414 g K₂Cr₂O₇, dilarutkan dan ditepatkan hingga 100 mL.</li><li><b>Larutan baku 50 mg/L:</b> pipet 10 mL larutan 500 mg/L ke labu takar 100 mL, lalu tepatkan dengan akuades.</li><li><b>Larutan baku 5 mg/L:</b> pipet 10 mL larutan 50 mg/L ke labu takar 100 mL, lalu tepatkan dengan akuades.</li></ol><div class="callout">Periksa kembali massa K₂Cr₂O₇ pada catatan larutan induk terhadap konsentrasi target dan volume akhir sebelum menyiapkan larutan.</div>',
+work:'<ol><li>Siapkan deret standar 0,0; 0,1; 0,2; 0,3; 0,4; dan 0,5 mg/L di labu takar 50 mL.</li><li>Tambahkan H₃PO₄ hingga pH sekitar 2 sesuai metode yang digunakan.</li><li>Tambahkan akuades hingga tanda tera dan homogenkan.</li><li>Tambahkan 0,5 mL larutan DPC, homogenkan, lalu diamkan 5–10 menit sebelum pengukuran.</li></ol>',
+measure:'<ol><li>Pipet 0,5 mL larutan sampel ke labu takar 50 mL; lakukan pengukuran duplo untuk presisi.</li><li>Atur pH menjadi sekitar 2 menggunakan H₃PO₄, tambahkan akuades hingga tanda tera, lalu homogenkan.</li><li>Pipet 25 mL larutan ke piala gelas, tambahkan 0,5 mL DPC, homogenkan, dan diamkan 5–10 menit.</li><li>Ukur absorbansi pada 540 nm. Ukur juga blanko sampel tanpa DPC untuk koreksi warna ekstrak.</li></ol><div class="callout">Catatan: volume 25 mL yang diambil dari larutan dalam labu 50 mL perlu diperhitungkan pada faktor pengenceran/perhitungan akhir sesuai metode yang digunakan.</div>'
+};
+function showTab(name){$("#tabContent").innerHTML=tabData[name];$("#tabs").querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.tab===name))}
+$("#tabs").querySelectorAll("button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+render();showTab("dpc");
+</script>
+</body>
+</html>
